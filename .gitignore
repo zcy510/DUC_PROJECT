@@ -1,0 +1,11 @@
+# Applies to every sub-project in this repository
+.DS_Store
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/data/
+**/spark-warehouse/
+**/metastore_db/
+**/derby.log
+.idea/
+.vscode/

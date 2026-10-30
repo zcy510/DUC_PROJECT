@@ -1,0 +1,10 @@
+{
+  "n_events": 12196359,
+  "events_per_category": 0.566,
+  "users_per_category": 1.627,
+  "events_per_category_hour": 0.611,
+  "total_job": 4.13,
+  "master": "local[*]",
+  "shuffle_partitions": 8,
+  "spark_version": "4.0.1"
+}

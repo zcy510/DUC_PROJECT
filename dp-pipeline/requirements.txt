@@ -1,0 +1,9 @@
+# Tested together on Python 3.11 and 3.12 + Java 17/21 (Oct 2026).
+# PipelineDP needs Python 3.11-3.13; Spark 4.0 needs Java 17 or 21.
+pyspark==4.0.1
+pipeline-dp==0.3.1     # Phase 2 (central DP); installed now to catch version conflicts early
+python-dp==1.1.5
+numpy==2.3.5
+pandas==2.2.3          # pandas 3.x triggers warnings with Spark 4.0
+pyarrow==26.0.0
+pytest==9.2.0
