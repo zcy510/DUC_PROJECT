@@ -1,5 +1,7 @@
 # DP Pipeline — Phase 1: Baseline (Milestone M1)
 
+> **Phase 2 (central and local DP): [PHASE2.md](PHASE2.md) · Phase 3 (experiments and figures): [PHASE3.md](PHASE3.md)**
+
 Course project, DUC: *Implementing Differential Privacy in Distributed Data Aggregation Pipelines*.
 
 Phase 1 is complete when you have two things (project plan §4.3–4.4, milestone M1):
@@ -17,9 +19,15 @@ dp-pipeline/
 ├── .python-version         Python version used for the results (3.11)
 ├── src/
 │   ├── generate_data.py    Step 1: synthetic events → Parquet + ground truth
-│   └── baseline_job.py     Step 2: PySpark job, 3 exact queries + timings
+│   ├── baseline_job.py     Step 2: PySpark job, 3 exact queries + timings
+│   ├── central_dp.py       Phase 2: central DP with PipelineDP on Spark
+│   ├── local_dp.py         Phase 2: local DP, k-ary randomised response
+│   ├── metrics.py          error metrics vs ground truth (MAE, MRE, Spearman, ...)
+│   ├── experiments.py      Phase 3: runs all experiments (resumable)
+│   └── plot_results.py     Phase 3: figures + summary tables per research question
 ├── tests/
-│   └── test_baseline.py    Step 3: T0 correctness tests (pytest)
+│   ├── test_baseline.py    Step 3: T0 correctness tests (pytest)
+│   └── test_dp.py          Phase 2: T0 tests for noise, bounding, k-RR
 ├── data/                   generated datasets (not in git; re-create any time)
 └── results/baseline/       Spark output CSVs + runtime.json per dataset size
 ```

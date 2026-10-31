@@ -17,6 +17,8 @@ Usage:
 
 import argparse
 import json
+import os
+import sys
 import time
 from pathlib import Path
 
@@ -36,7 +38,13 @@ def make_spark(master: str = "local[*]", shuffle_partitions: int = 8) -> SparkSe
       Fixing the session to UTC is a safety net: if timestamps ever carry a
       time zone, hour(ts) still matches the generator instead of shifting
       to your laptop's local time.
+    - PYSPARK_PYTHON: Python code inside Spark tasks (e.g. the lambdas
+      PipelineDP uses) runs in separate worker processes. They must use the
+      SAME interpreter as this script (the project's .venv), otherwise Spark
+      may start the system Python and fail with PYTHON_VERSION_MISMATCH.
     """
+    os.environ.setdefault("PYSPARK_PYTHON", sys.executable)
+    os.environ.setdefault("PYSPARK_DRIVER_PYTHON", sys.executable)
     return (SparkSession.builder
             .master(master)
             .appName("dp-baseline")
